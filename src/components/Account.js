@@ -6,7 +6,7 @@ const Account = (props) => {
 
   console.log(props.accounts)
 
-  let account = props.accounts[props.match.params.id -1]
+  let account = props.accounts && props.accounts.find(a => a.id == props.match.params.id)
 
   const renderAccount = () => {
     if (account ) {
@@ -24,7 +24,7 @@ const Account = (props) => {
   return (
     <div>
       {props.match.isExact && renderAccount()}
-      <TransactionContainer account={account} history={props.history} urlMatch={props.match}/>
+      <TransactionContainer handleSubmit={props.handleSubmit} account={account} history={props.history} urlMatch={props.match}/>
     </div>
 
   )
