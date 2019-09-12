@@ -1,7 +1,8 @@
-export const addAccount = (data, history) => {
+export const addTransaction = (data, accountId, history) => {
+
 
   return (dispatch) => {
-    fetch('http://localhost:3000/api/v1/accounts', {
+    fetch(`http://localhost:3000/api/v1/accounts/${accountId}/transactions`, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -11,8 +12,8 @@ export const addAccount = (data, history) => {
     })
     .then(response => response.json())
     .then(account => {
-      dispatch({type: 'ADD_ACCOUNT', payload: account})
-      history.push(`/accounts/${account.id}`)
+      dispatch({type: 'ADD_TRANSACTION', payload: account})
+      history.push(`/accounts/${accountId}`)
     })
   }
 
